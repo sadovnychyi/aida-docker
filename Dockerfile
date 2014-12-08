@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
   openjdk-7-jdk \
   maven \
   postgresql \
+  bzip2 \
 
 RUN git clone https://github.com/yago-naga/aida.git
 RUN cd aida
