@@ -1,6 +1,6 @@
 FROM debian:wheezy
 
-ADD http://resources.mpi-inf.mpg.de/yago-naga/aida/download/entity-repository/AIDA_entity_repository_2010-08-17v7.sql.bz2
+ADD http://resources.mpi-inf.mpg.de/yago-naga/aida/download/entity-repository/AIDA_entity_repository_2010-08-17v7.sql.bz2 AIDA_entity_repository_2010-08-17v7.sql.bz2
 
 RUN apt-get update && apt-get install -y \
   git \
