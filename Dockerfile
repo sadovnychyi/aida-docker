@@ -23,6 +23,6 @@ RUN echo "dataAccess = dmap" > settings/aida.properties
 RUN echo "NumThreads = 1" >> settings/aida.properties
 RUN mvn package -X || true
 RUN mvn package
-RUN export MAVEN_OPTS="-Xmx12G"
+RUN export MAVEN_OPTS="-Xmx120G"
 ENTRYPOINT ["mvn", "jetty:run"]
 EXPOSE 8080
