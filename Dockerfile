@@ -20,7 +20,8 @@ RUN git clone https://github.com/yago-naga/aida.git
 VOLUME ["/aida/dMaps"]
 WORKDIR aida
 RUN echo -e "dataAccess = dmap\nNumThreads = 1" >> settings/aida.properties
-RUN mvn package -X
+RUN mvn package -X || true
+RUN mvn package
 RUN export MAVEN_OPTS="-Xmx12G"
 ENTRYPOINT ["mvn", "jetty:run"]
 EXPOSE 8080
