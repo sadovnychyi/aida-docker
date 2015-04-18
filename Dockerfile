@@ -1,7 +1,5 @@
 FROM debian:wheezy
-
 ENV JAVA_VERSION 1.8.0
-
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" \
     | tee /etc/apt/sources.list.d/webupd8team-java.list \
   &&  echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" \
@@ -17,15 +15,12 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" \
   && update-alternatives --display java \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
-
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-
 RUN git clone https://github.com/yago-naga/aida.git
-RUN cd aida
+VOLUME ["/aida/dMaps"]
+WORKDIR aida
 RUN echo -e "dataAccess = dmap\nNumThreads = 1" >> settings/aida.properties
 RUN mvn package
-
 RUN export MAVEN_OPTS="-Xmx12G"
- 
 ENTRYPOINT ["mvn", "jetty:run"]
 EXPOSE 8080
